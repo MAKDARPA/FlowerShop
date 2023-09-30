@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <section class="parallax">
+        <img src="images/hill1.png" id="hill1">
+        <img src="images/hill2.png" id="hill2">
+        <img src="images/hill3.png" id="hill3">
+        <img src="images/hill4.png" id="hill4">
+        <img src="images/hill5.png" id="hill5">
+        <img src="images/tree.png" id="tree">
+        <h2 id="text">Login</h2>
+        <img src="images/leaf.png" id="leaf">
+        <img src="images/plant.png" id="plant">
+    </section>
+    <section class="sec">
+        <div class="login-container">
+            <form id="login-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <input type="submit" value="Login">
+                <a href="register.html" class="register-button">Register</a>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $("#login-form").submit(function(e) {
+                e.preventDefault();
+
+                let username = $("#username").val();
+                let password = $("#password").val();
+
+                let users = JSON.parse(localStorage.getItem("users"));
+
+                if (users) {
+                    let foundUser = users.find(
+                        (user) => user.username === username && user.password === password
+                    );
+
+                    if (foundUser) {
+                        alert("Login successful!");
+                        window.location.href = "index.html";
+                    } else {
+                        alert("Invalid username or password!");
+                    }
+                } else {
+                    alert("No users registered yet!");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
